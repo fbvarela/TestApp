@@ -1,0 +1,63 @@
+openapi: 3.0.1
+info:
+  title: Product Price API
+  version: 1.0.0
+  description: API for retrieving product prices
+
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+
+paths:
+  /api/productPrice:
+    get:
+      tags:
+        - product-price-controller
+      operationId: getProductPrice
+      parameters:
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: productId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: brandId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '404':
+          description: Not Found
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductPriceDTO'
+components:
+  schemas:
+    ProductPriceDTO:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int32
+        brandId:
+          type: integer
+          format: int32
+        priceList:
+          type: integer
+          format: int32
+        startDate:
+          type: string
+        price:
+          type: string
