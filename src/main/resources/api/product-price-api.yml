@@ -35,6 +35,10 @@ paths:
       responses:
         '404':
           description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
         '200':
           description: OK
           content:
@@ -60,4 +64,11 @@ components:
         startDate:
           type: string
         price:
+          type: string
+    ErrorMessage:
+      type: object
+      properties:
+        message:
+          type: string
+        description:
           type: string
